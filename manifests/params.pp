@@ -29,6 +29,6 @@ class hadoop::params {
     $ver = '2.7.1'
   }
 
-  $source = "http://archive.apache.org/dist/hadoop/${package}/${ver}/${file}"
+  $source = "http://archive.apache.org/dist/hadoop/${package}/hadoop-${ver}/${file}"
 
 }
