@@ -17,6 +17,7 @@ class hadoop::params {
   $install_dir = '/opt/hadoop'
   $hadoop_home = '/usr/share/hadoop'
   $java_home = undef
+  $java_dist = undef
   $owner = 'hadoop'
   $group = 'hadoop'
 

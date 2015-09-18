@@ -17,7 +17,8 @@ class hadoop (
   $source      = $::hadoop::params::source,
   $ver         = $::hadoop::params::ver,
   $hadoop_home = $::hadoop::params::hadoop_home,
-  $java_home   = $::hadoop::params::java_home,) inherits hadoop::params {
+  $java_home   = $::hadoop::params::java_home,
+  $java_dist   = $::hadoop::params::java_dist,) inherits hadoop::params {
   # Default version is current latest stable at 2.7.1
   artifact { $file:
     source => $source,
@@ -39,8 +40,14 @@ class hadoop (
     unless  => "sudo -u ${owner} test -O ${install_dir}",
   } -> class { 'hadoop::setup': }
 
-  if ($java_home == undef) {
-    class { 'java': distribution => 'jdk', }
+  if ($java_home == undef and $::java_home == undef) {
+    if $java_dist == undef {
+      $java = 'jdk'
+    }
+
+    class { 'java':
+      distribution => $java,
+    }
     $jvm_home = $::java_home
   } else {
     $jvm_hom = $java_home
