@@ -1,0 +1,13 @@
+{
+  "author": "Dustin Morgan <dustin_morgan@cable.comcast.com",
+  "dependencies": [],
+  "license": "Apache-2.0",
+  "name": "swizzley88-hadoop",
+  "operatingsystem_support": [],
+  "project_page": "",
+  "requirements": [],
+  "source": "",
+  "summary": "Base install of Hadoop Common/Core Package",
+  "tags": ["hadoop", "common", "core", "2.7.1", "current"],
+  "version": "0.1.0"
+}
