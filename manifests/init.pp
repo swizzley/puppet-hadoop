@@ -26,11 +26,21 @@ class hadoop (
   $source      = $::hadoop::params::source,
   $ver         = $::hadoop::params::ver,
   $hadoop_home = $::hadoop::params::hadoop_home,
-  $java_home   = $::hadoop::params::java_home,
+  $java        = $::hadoop::params::java,
   $java_dist   = $::hadoop::params::java_dist,
   $java_ver    = $::hadoop::params::java_ver,
   $owner       = $::hadoop::params::owner,
   $group       = $::hadoop::params::group,) inherits hadoop::params {
+  # Validation
+  validate_string($target)
+  validate_string($file)
+  validate_string($source)
+  validate_string($ver)
+  validate_string($owner)
+  validate_string($group)
+  validate_absolute_path($install_dir)
+  validate_absolute_path($hadoop_home)
+  # Ensure User:Group
   group { $group: ensure => present } -> user { $owner: ensure => present }
 
   # Default version is current latest stable at 2.7.1
@@ -55,26 +65,21 @@ class hadoop (
     require => User[$owner]
   } -> class { 'hadoop::setup': }
 
-  if ($java_home == undef and $::java_home == undef) {
-    if $java_dist == undef {
-      $java = 'jdk'
-    }
-    $jvm_home = $::java_home
+  # Install Java then configure Hadoop
+  if ($::java_home == undef) {
     class { 'java':
       distribution => $java,
       version      => $java_ver,
       package      => $java_pkg
     } -> hadoop::config { 'hadoop':
       install_dir => $install_dir,
-      jvm_home    => $jvm_home,
+      jvm_home    => $::java_home,
       hadoop_home => $hadoop_home,
     }
   } else {
-    $jvm_home = $java_home
-
     hadoop::config { 'hadoop':
       install_dir => $install_dir,
-      jvm_home    => $jvm_home,
+      jvm_home    => $::java_home,
       hadoop_home => $hadoop_home,
     }
   }

@@ -6,7 +6,6 @@ class hadoop::params {
   $package = 'common'
   $target = '/tmp'
   $install_dir = '/opt/hadoop'
-  $java_home = undef
   $java_dist = undef
   $java_pkg = undef
   $java_ver = 'present'
@@ -22,6 +21,12 @@ class hadoop::params {
   } else {
     $file = 'hadoop-2.7.1.tar.gz'
     $ver = '2.7.1'
+  }
+
+  if ($java_dist == undef) {
+    $java = 'jdk'
+  } else {
+    $java = $java_dist
   }
 
   $hadoop_home = '/usr/share/hadoop'
