@@ -12,8 +12,10 @@
 # $hadoop_home : hadoop app dir
 # $java_home   : java install dir
 # $java_dist   : java installation
+# $owner       : owner of hadoop directory
+# $group       : grou of hadoop directory
 #
-# Requires: puppetlabs/java (only when installing java using that module)      
+# Requires: puppetlabs/java (only when installing java using that module)
 #
 class hadoop (
   $target      = $::hadoop::params::target,
@@ -23,7 +25,11 @@ class hadoop (
   $ver         = $::hadoop::params::ver,
   $hadoop_home = $::hadoop::params::hadoop_home,
   $java_home   = $::hadoop::params::java_home,
-  $java_dist   = $::hadoop::params::java_dist,) inherits hadoop::params {
+  $java_dist   = $::hadoop::params::java_dist,
+  $owner       = $::hadoop::params::owner,
+  $group       = $::hadoop::params::group,) inherits hadoop::params {
+  group { $group: ensure => present } -> user { $owner: ensure => present }
+
   # Default version is current latest stable at 2.7.1
   artifact { $file:
     source => $source,
