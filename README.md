@@ -29,16 +29,24 @@ include ::hadoop
 
 New fact $::java_home added for finding and setting $JAVA_HOME 
 
-```$version``` [default: 2.7.1] which is current stable at the time of this module release
-```$package``` Specify Core or Common Package [default: common]
-```target``` Download directory [default: /tmp]
-```install_dir``` Installation path [default: /opt/hadoop]
-```java_home``` Java install directory [default: undef]
-```java_dist``` Java installation for use when installing java via puppetlabs/java [default: undef] which is effectively jdk
-```java_pkg``` Specify a java package to pass to puppetlabs/java [default: undef]
-```java_ver``` Specify a java version to pass to puppetlabs/java [default: 'present']
-```owner``` Owner of hadoop directory and files [default: hadoop]
-```group``` Group of hadoop directory and files [default: hadoop]
+```$version``` 
+[default: 2.7.1] which is current stable at the time of this module release
+```$package``` 
+Specify Core or Common Package [default: common]
+```target``` 
+Download directory [default: /tmp]
+```install_dir``` 
+Installation path [default: /opt/hadoop]
+```java_dist``` 
+Java installation for use when installing java via puppetlabs/java [default: undef] which is effectively jdk
+```java_pkg``` 
+Specify a java package to pass to puppetlabs/java [default: undef]
+```java_ver``` 
+Specify a java version to pass to puppetlabs/java [default: 'present']
+```owner``` 
+Owner of hadoop directory and files [default: hadoop]
+```group``` 
+Group of hadoop directory and files [default: hadoop]
 
 ## Requirements
 
@@ -58,7 +66,7 @@ Tested On: CentOS 6.6 (used in production)
 
 ## Limitations
 
-Your imagination
+If installing java using this module which uses the puppetlabs/java module, puppet will need to run twice before $JAVA_HOME can be set to the valid value of $::java_home, because facter gets read before java is installed. If java is already installed, it will work the first run.  
 
 ## Development
 
