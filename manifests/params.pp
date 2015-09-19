@@ -8,6 +8,8 @@ class hadoop::params {
   $install_dir = '/opt/hadoop'
   $java_home = undef
   $java_dist = undef
+  $java_pkg = undef
+  $java_ver = 'present'
   $owner = 'hadoop'
   $group = 'hadoop'
 

@@ -12,6 +12,8 @@
 # $hadoop_home : hadoop app dir
 # $java_home   : java install dir
 # $java_dist   : java installation
+# $java_pkg    : java package to specify
+# $java_ver    : java version
 # $owner       : owner of hadoop directory
 # $group       : grou of hadoop directory
 #
@@ -26,6 +28,7 @@ class hadoop (
   $hadoop_home = $::hadoop::params::hadoop_home,
   $java_home   = $::hadoop::params::java_home,
   $java_dist   = $::hadoop::params::java_dist,
+  $java_ver    = $::hadoop::params::java_ver,
   $owner       = $::hadoop::params::owner,
   $group       = $::hadoop::params::group,) inherits hadoop::params {
   group { $group: ensure => present } -> user { $owner: ensure => present }
@@ -38,7 +41,7 @@ class hadoop (
   exec { 'install_hadoop':
     path    => '/bin:/usr/bin',
     command => "mkdir -p ${install_dir} && tar -C ${install_dir} -xzf ${target}/${file} --strip-components=1",
-    creates  => "${install_dir}/bin/hadoop"
+    creates => "${install_dir}/bin/hadoop"
   } ->
   exec { 'de-window_hadoop':
     path    => '/bin:/usr/bin',
@@ -59,6 +62,8 @@ class hadoop (
 
     class { 'java':
       distribution => $java,
+      version      => $java_ver,
+      package      => $java_pkg
     }
     $jvm_home = $::java_home
   } else {

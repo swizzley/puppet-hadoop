@@ -35,6 +35,8 @@ New fact $::java_home added for finding and setting $JAVA_HOME
 ```install_dir``` Installation path [default: /opt/hadoop]
 ```java_home``` Java install directory [default: undef]
 ```java_dist``` Java installation for use when installing java via puppetlabs/java [default: undef] which is effectively jdk
+```java_pkg``` Specify a java package to pass to puppetlabs/java [default: undef]
+```java_ver``` Specify a java version to pass to puppetlabs/java [default: 'present']
 ```owner``` Owner of hadoop directory and files [default: hadoop]
 ```group``` Group of hadoop directory and files [default: hadoop]
 
