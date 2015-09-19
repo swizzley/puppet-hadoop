@@ -49,6 +49,7 @@ class hadoop (
     path    => '/bin:/usr/bin',
     command => "chown -R ${owner}:${group} ${install_dir}",
     unless  => "sudo -u ${owner} test -O ${install_dir}",
+    require => User[$owner]
   } -> class { 'hadoop::setup': }
 
   if ($java_home == undef and $::java_home == undef) {
