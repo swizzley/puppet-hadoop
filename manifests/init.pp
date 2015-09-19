@@ -47,8 +47,8 @@ class hadoop (
   } ->
   exec { 'chown_hadoop':
     path    => '/bin:/usr/bin',
-    command => "chown -R ${owner}:${group} ${install_dir}",
-    unless  => "sudo -u ${owner} test -O ${install_dir}",
+    command => "chown -R ${owner}:${group} ${install_dir}/",
+    unless  => "sudo -u ${owner} test -O ${install_dir}/bin/hadoop",
     require => User[$owner]
   } -> class { 'hadoop::setup': }
 
