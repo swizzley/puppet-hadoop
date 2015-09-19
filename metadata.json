@@ -54,7 +54,7 @@
         },
         {
             "name": "puppet",
-            "version_requirement": "3.x"
+            "version_requirement": ">=2.7.20 <4.0.0"
         }
     ],
     "source": "https://github.com/swizzley/puppet-hadoop",
