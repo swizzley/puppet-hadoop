@@ -38,12 +38,12 @@ class hadoop (
   exec { 'install_hadoop':
     path    => '/bin:/usr/bin',
     command => "mkdir -p ${install_dir} && tar -C ${install_dir} -xzf ${target}/${file} --strip-components=1",
-    unless  => 'test -d /etc/hadoop && test -d /include && test -x /bin/hadoop'
+    creates  => "${install_dir}/bin/hadoop"
   } ->
   exec { 'de-window_hadoop':
     path    => '/bin:/usr/bin',
     command => "find ${install_dir} -name \"*.cmd\" -delete",
-    unless  => "find /opt/hadoop -name \"*.cmd\"|wc -l|grep -q 0"
+    unless  => "find ${install_dir} -name \"*.cmd\"|wc -l|grep -q 0"
   } ->
   exec { 'chown_hadoop':
     path    => '/bin:/usr/bin',
