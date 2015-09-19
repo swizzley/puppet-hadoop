@@ -2,13 +2,18 @@
 #
 # This module manages hadoop
 #
-# Parameters: none
+# Parameters:
 #
-# Actions:
+# $target      : download dir
+# $file        : hadoop package archive name
+# $install_dir : installation dir
+# $source      : download link
+# $ver         : hadoop version
+# $hadoop_home : hadoop app dir
+# $java_home   : java install dir
+# $java_dist   : java installation
 #
-# Requires: see Modulefile
-#
-# Sample Usage:
+# Requires: puppetlabs/java (only when installing java using that module)      
 #
 class hadoop (
   $target      = $::hadoop::params::target,
@@ -26,7 +31,7 @@ class hadoop (
   } ->
   exec { 'install_hadoop':
     path    => '/bin:/usr/bin',
-    command => "mkdir -p ${install_dir} && tar -C /opt -xzf ${target}/${file} --strip-components=1",
+    command => "mkdir -p ${install_dir} && tar -C ${install_dir} -xzf ${target}/${file} --strip-components=1",
     unless  => 'test -d /etc/hadoop && test -d /include && test -x /bin/hadoop'
   } ->
   exec { 'de-window_hadoop':

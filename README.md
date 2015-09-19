@@ -18,7 +18,7 @@ Hadoop Module for setup of Core/Common Hadoop Package on Linux systems.
 
 ## Setup
 
-This could take a while to run, the current version is 200MB, others are smaller and you can specify which to use in params.
+This could take a while to run, the current version is 200MB, others are smaller and you can specify which to use in params as well as the url for the mirror that works best. The latest version of artifact has no exec timeout, so that the file will eventually download. 
 
 ```
 include ::hadoop

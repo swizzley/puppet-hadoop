@@ -1,15 +1,5 @@
 # Class: hadoop::setup
 #
-# This module manages hadoop
-#
-# Parameters: none
-#
-# Actions:
-#
-# Requires: see Modulefile
-#
-# Sample Usage:
-#
 class hadoop::setup {
   File {
     purge   => true,
