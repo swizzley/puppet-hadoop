@@ -1,25 +1,18 @@
 # Class: hadoop::params
 #
-# This module manages hadoop
-#
-# Parameters: none
-#
-# Actions:
-#
-# Requires: see Modulefile
-#
-# Sample Usage:
-#
 class hadoop::params {
+  # BEGIN user configurable
   $version = 'current'
   $package = 'common'
   $target = '/tmp'
   $install_dir = '/opt/hadoop'
-  $hadoop_home = '/usr/share/hadoop'
   $java_home = undef
   $java_dist = undef
   $owner = 'hadoop'
   $group = 'hadoop'
+
+  # END user configurable
+
 
   if ($version != 'current') {
     $file = "hadoop-${version}.tar.gz"
@@ -29,6 +22,7 @@ class hadoop::params {
     $ver = '2.7.1'
   }
 
+  $hadoop_home = '/usr/share/hadoop'
   $source = "http://archive.apache.org/dist/hadoop/${package}/hadoop-${ver}/${file}"
 
 }
