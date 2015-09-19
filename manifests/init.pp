@@ -10,8 +10,8 @@
 # $source      : download link
 # $ver         : hadoop version
 # $hadoop_home : hadoop app dir
-# $java_home   : java install dir
 # $java_dist   : java installation
+# $java        : java installation default
 # $java_pkg    : java package to specify
 # $java_ver    : java version
 # $owner       : owner of hadoop directory
