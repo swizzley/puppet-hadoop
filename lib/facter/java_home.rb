@@ -4,7 +4,7 @@
 #
 # Resolution:
 #   Tests for presence of java, returns nil if not present
-#   returns output of "which java" and splits on \n + '"'
+#   returns output of "'readlink -f $(which java)|rev|cut -c 10-|rev'"
 #
 # Caveats:
 #   none

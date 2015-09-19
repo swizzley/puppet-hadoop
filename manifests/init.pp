@@ -59,20 +59,24 @@ class hadoop (
     if $java_dist == undef {
       $java = 'jdk'
     }
-
+    $jvm_home = $::java_home
     class { 'java':
       distribution => $java,
       version      => $java_ver,
       package      => $java_pkg
+    } -> hadoop::config { 'hadoop':
+      install_dir => $install_dir,
+      jvm_home    => $jvm_home,
+      hadoop_home => $hadoop_home,
     }
-    $jvm_home = $::java_home
   } else {
-    $jvm_hom = $java_home
+    $jvm_home = $java_home
+
+    hadoop::config { 'hadoop':
+      install_dir => $install_dir,
+      jvm_home    => $jvm_home,
+      hadoop_home => $hadoop_home,
+    }
   }
 
-  hadoop::config { 'hadoop':
-    install_dir => $install_dir,
-    jvm_home    => $jvm_home,
-    hadoop_home => $hadoop_home,
-  }
 }
