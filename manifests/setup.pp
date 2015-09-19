@@ -25,7 +25,7 @@ class hadoop::setup {
       target => "${hadoop::install_dir}/share/doc";
 
     # lib
-    "/usr/lib/native":
+    '/usr/lib/native':
       target => "${hadoop::install_dir}/lib/native";
 
     # include
