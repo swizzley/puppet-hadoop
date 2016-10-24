@@ -1,6 +1,10 @@
 # Class: hadoop::setup
 #
 class hadoop::setup {
+  file {'/usr/libexec':
+      ensure => directory
+  }
+
   File {
     purge   => true,
     force   => true,
