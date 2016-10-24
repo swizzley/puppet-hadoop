@@ -19,7 +19,7 @@ class hadoop::setup {
 
     # etc
     '/etc/hadoop':
-      target => "${hadoop::install_dir}/etc";
+      target => "${hadoop::install_dir}/etc/hadoop";
 
     # share
     '/usr/share/hadoop':
